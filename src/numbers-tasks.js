@@ -49,8 +49,9 @@ function getCircleCircumference(radius) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function getAverage(value1, value2) {
+  if (value1 + value2 >= Number.MAX_VALUE) return Number.MAX_VALUE;
+  return (value1 + value2) / 2;
 }
 
 /**
@@ -107,8 +108,18 @@ function getLinearEquationRoot(a, b) {
  *   (0,-1) (1,0)    => π/2
  *   (0,1) (0,1)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  const angleOne = Math.atan2(y1, x1);
+  const angleTwo = Math.atan2(y2, x2);
+  let angleDiff = angleTwo - angleOne;
+
+  if (angleDiff > Math.PI) {
+    angleDiff -= 2 * Math.PI;
+  } else if (angleDiff < 0) {
+    angleDiff += 2 * Math.PI;
+  }
+
+  return angleDiff;
 }
 
 /**
